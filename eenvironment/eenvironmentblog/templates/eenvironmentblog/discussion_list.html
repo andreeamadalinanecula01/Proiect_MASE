@@ -1,0 +1,37 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block content %}
+<div class="row">
+    <h1>Discuții</h1>
+
+        <div class="card mb-4 shadow-sm">
+        <a href="{% url 'new_discussion' %}" style="margin-top:2%" class="btn btn-primary">Discuție nouă</a>
+
+        </div>
+            {% if discussions %}
+        {% for discussion in discussions %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+    <h2>{{ discussion.title }}</h2>
+              <p> {{ discussion.description }}</p>
+                      <a href="{% url 'discussion_detail' discussion.id %}" class="btn btn-primary">Detalii Discuție</a> 
+
+                <p style="display: inline-block; color: #666; margin-right: 10px;float:right"><strong>Creat De:</strong> {{ discussion.created_by.username }}</p>
+                <p style="display: inline-block; color: #666;"><strong>Creat La:</strong> {{ discussion.created_at }}</p>
+                {% if user.is_superuser %}
+                    <form action="{% url 'delete_discussion' discussion.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No discussions found.</p>
+    {% endif %}
+
+
+</div>
+{% endblock %}
+ 

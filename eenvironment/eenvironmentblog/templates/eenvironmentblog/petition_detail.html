@@ -1,0 +1,48 @@
+{% extends 'eenvironmentblog/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h2>{{ petition.titlu }}</h2>
+        <p><strong>Arie Naturala:</strong> {{ petition.arie_naturala }}</p>
+        <p><strong>Campanie inițiată de:</strong> {{ petition.campanie_initiata_de }}</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Formular de Semnare</h2>
+        <form method="post" action="{% url 'petition_detail' petition.id %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Nume</label>
+                <input type="text" class="form-control" id="nume" name="nume" required>
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Prenume</label>
+                <input type="text" class="form-control" id="prenume" name="prenume" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Adresă de Email</label>
+                <input type="email" class="form-control" id="adresa_email" name="adresa_email" required>
+            </div>
+            <div class="mb-3">
+                <label for="judet" class="form-label">Județ</label>
+                <input type="text" class="form-control" id="judet" name="judet" required>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Număr de Telefon</label>
+                <input type="tel" class="form-control" id="numar_telefon" name="numar_telefon" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Semnează</button>
+        </form>
+    </div>
+        <div class="col-md-4">
+                    <p><strong>Semnata de:</strong> </p>
+        <ul>
+            {% for signiature in signiatures %}
+            <li>
+                                        {{ signiature.nume }}  {{ signiature.prenume }}
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,31 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Petiții Online{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+                <h1 class="mb-4">Lista de Petiții</h1>
+        {% if petitions %}
+            <div class="card mb-12 shadow-sm">
+                {% for petition in petitions %}
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="nav-link" style="color: green !important; " href="{% url 'petition_detail' petition.id %}">{{ petition.titlu }}</a></h5>
+                        <p class="card-text">
+                            <strong>Campanie inițiată de:</strong>
+                        {{ petition.campanie_initiata_de }}
+                        </p>
+                        <p class="card-text">
+                         {{ petition.text_petitie|safe }}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Nu există petiții disponibile.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+ 

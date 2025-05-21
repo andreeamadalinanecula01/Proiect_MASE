@@ -1,0 +1,16 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Date Speologice{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Date Speologice pentru {{ arie_naturala.nume_arie }}</h1>
+    <div class="card mb-3">
+        <div class="card-body">
+            {{ date_speologice.body|safe }}
+        </div>
+    </div>
+    <a href="{% url 'post_detail' date_speologice.arie_naturala.post_set.first.pk %}" class="btn btn-secondary">Back to Post</a>
+</div>
+{% endblock %}
+ 

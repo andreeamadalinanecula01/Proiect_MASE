@@ -1,0 +1,16 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Date Hidrografice{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Date Hidrografice pentru {{ arie_naturala.nume_arie }}</h1>
+    <div class="card mb-3">
+        <div class="card-body">
+            {{ date_hidrografice.body|safe }}
+        </div>
+    </div>
+    <a href="{% url 'post_detail' date_hidrografice.arie_naturala.post_set.first.pk %}" class="btn btn-secondary">Back to Post</a>
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,33 @@
+{% extends 'eenvironmentblog/base.html' %}
+{% block content %}
+
+
+<div class="row">
+<h1 class="mb-4">{{ discussion.title }}</h1>
+<p>{{ discussion.description }}</p>
+
+<h2>Comments</h2>
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+<a href="{% url 'add_comment' discussion.id %}" style="margin-top:2%" class="btn btn-primary">Add Comment</a>
+      </div>
+
+  {% for comment in discussion.comments.all %}
+      <div class="card-body" style="box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.1); margin-bottom:10px">
+        <p class="card-text">{{ comment.body }}</p>
+        <p class="card-text" style="display: inline-block; color: #666; margin-right: 10px;float:right"><strong>Creat De:</strong>{{ comment.created_by.username }}</p>
+                {% if user.is_superuser %}
+                    <form action="{% url 'delete_comment' comment.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
+      </div>
+  {% endfor %}
+
+      </div>
+
+
+{% endblock %}
+</div>

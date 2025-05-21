@@ -1,0 +1,56 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Acasă - e-Environment{% endblock %}
+
+{% block content %}
+<div class="homepage-banner">
+    <div class="overlay">
+        <div class="text-center text-light banner-text">
+            <h1>Bine ai venit în e-Environment!</h1>
+            <p class="lead">Platformă educațională și colaborativă pentru protejarea ariilor naturale din România.</p>
+            <a href="{% url 'arii_list' %}" class="btn btn-success btn-lg mt-3">Explorează Ariile Naturale</a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Contact -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Contact</h4>
+                    <a href="https://www.facebook.com/UPB1818" class="btn btn-primary me-2 mb-2">
+                        <i class="bi bi-facebook"></i> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/upb1818/" class="btn btn-danger me-2 mb-2">
+                        <i class="bi bi-instagram"></i> Instagram
+                    </a>
+                    <a href="https://twitter.com/upb1818" class="btn btn-secondary me-2 mb-2">
+                        <i class="bi bi-twitter"></i> X
+                    </a>
+                    <a href="https://www.youtube.com/c/UniversitateaPOLITEHNICAdinBucure%C8%99ti" class="btn btn-danger me-2 mb-2">
+                        <i class="bi bi-youtube"></i> YouTube
+                    </a>
+                    <a href="https://upb.ro/" class="btn btn-dark me-2 mb-2">
+                        <i class="bi bi-globe"></i> Website
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Donații -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Donații</h4>
+                    <p class="card-text"><strong>IBAN:</strong> RO49AAAA1B31007593840000</p>
+                    <p class="card-text"><strong>Revolut:</strong> @eenvironment-upb</p>
+                    <p class="text-muted">Ajută-ne să protejăm natura. Fiecare contribuție contează!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+ 

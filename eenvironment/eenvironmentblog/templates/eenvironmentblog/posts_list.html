@@ -1,0 +1,37 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Postări - Campanii de Informare{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Campanii de Informare</h1>
+
+    {% if posts %}
+        {% for post in posts %}
+            <div class="card mb-4 shadow-sm">
+                {% if post.cover_image %}
+                    <img src="{{ post.cover_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">
+                        <strong>Arie Naturală:</strong> {{ post.arie_naturala.nume_arie }}
+
+                        <strong>Tip:</strong> {{ post.arie_naturala.get_tip_arie_display }}
+
+                        <strong>Județ:</strong> {{ post.arie_naturala.judet_arie }}
+
+                        <strong>Localitate:</strong> {{ post.arie_naturala.localitate_arie }}
+                    </p>
+                    <p class="card-text">{{ post.body|striptags|truncatewords:30 }}</p>
+                    <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Citește mai mult</a>
+                    <p class="card-text mt-2"><small class="text-muted">Publicat la {{ post.created_on }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">Momentan nu există postări disponibile.</p>
+    {% endif %}
+</div>
+{% endblock %}
+ 

@@ -1,0 +1,36 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Date Biodiversitate{% endblock %}
+
+{% block content %}
+  <div class="container chat-container">
+        <div class="chat-header">
+            <h2 class="text-center">Chat Room</h2>
+        </div>
+        <div class="chat-messages">
+            {% for message in messages %}
+            <div class="message">
+                <span class="user">{{ message.user.username }}:</span>
+                <div class="message-content">{{ message.content }}</div>
+
+                            {% if user.is_superuser %}
+            <form action="{% url 'delete_message' message.id %}" method="post" style="float:right;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+            {% endif %}
+                  <span class="time" style="float:right">{{ message.created_at }}</span>
+            </div>
+            {% endfor %}
+        </div>
+     <div class="chat-input">
+            <form action="{% url 'send_message' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="content" placeholder="Type your message...">
+                    <button type="submit" class="btn btn-primary send-button">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

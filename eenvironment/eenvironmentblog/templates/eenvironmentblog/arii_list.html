@@ -1,0 +1,26 @@
+{% extends 'eenvironmentblog/base.html' %}
+
+{% block title %}Arii Naturale Disponibile{% endblock %}
+
+{% block content %}
+<h1>Arii Naturale Disponibile</h1>
+
+{% for arie in arii %}
+    <div class="card mb-4 shadow-sm p-3">
+        <h2>{{ arie.nume_arie }}</h2>
+        <p><strong>Tip:</strong> {{ arie.get_tip_arie_display }}</p>
+        <p><strong>Județ:</strong> {{ arie.judet_arie }}</p>
+        <p><strong>Localitate:</strong> {{ arie.localitate_arie }}</p>
+
+        {% if arie.imagine %}
+            <img src="{{ arie.imagine.url }}" alt="{{ arie.nume_arie }}" style="max-width: 400px;" class="mb-3">
+        {% endif %}
+
+        {% if arie.descriere %}
+            <div>{{ arie.descriere|safe }}</div>
+        {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock %}
+ 
