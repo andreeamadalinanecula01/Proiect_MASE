@@ -145,3 +145,20 @@ GRAPH_MODELS = {
     "all_applications": True,
     "group_models": True,
 }
+
+import dj_database_url
+import os
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']  # poți specifica domeniul Render mai târziu
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+
+# WhiteNoise pentru fișiere statice
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+ 
