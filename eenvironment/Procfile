@@ -1,2 +1,0 @@
-web: gunicorn eenvironment.wsgi --chdir eenvironment --log-file -
- 
